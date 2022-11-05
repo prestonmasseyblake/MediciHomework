@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+   
+    <script>
+        function createHeader (textt) {
+            let text = document.createElement("p")
+            text.innerHTML = textt
+           document.body.appendChild(text)
+        }
+      function sortObj(dict) {
+        var items = Object.keys(dict).map((key) => {
+          return [key, dict[key]];
+        });
+
+        // Step - 2
+        // Sort the array based on the second element (i.e. the value)
+        items.sort((first, second) => {
+          return second[1] - first[1];
+        });
+
+        // Step - 3
+        // Obtain the list of keys in sorted order of the values.
+        var keys = items.map((e) => {
+          return e[0];
+        });
+        let temp_arr = [];
+        for (let i = 0; i < keys.length; i++) {
+          temp_arr.push([keys[i], dict[keys[i]]]);
+         
+        }
+      
+        return temp_arr;
+      }
+
+      function generateTable(arr) {
+        // creates a <table> element and a <tbody> element
+        const tbl = document.createElement("table");
+        const tblBody = document.createElement("tbody");
+        const tableHeader = document.createElement("tr");
+        const tableHeadercell = document.createElement("th");
+        tableHeadercell.innerHTML = "family name";
+        const tableHeadercellTwo = document.createElement("th");
+        tableHeadercellTwo.innerHTML = "value";
+        tbl.appendChild(tableHeadercell);
+        tbl.appendChild(tableHeadercellTwo);
+        // creating all cellsa
+        // creates a table row
+        // Create a <td> element and a text node, make the text
+        // node the contents of the <td>, and put the <td> at
+        // the end of the table row
+        for (let i = 0; i < arr.length; i++) {
+          const row = document.createElement("tr");
+          const cell = document.createElement("td");
+          const cellText = document.createTextNode(arr[i][0]);
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+          const celll = document.createElement("td");
+          const celllText = document.createTextNode(arr[i][1]);
+          celll.appendChild(celllText);
+          row.appendChild(celll);
+          tblBody.appendChild(row);
+        }
+        // add the row to the end of the table body
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // appends <table> into <body>
+        document.body.appendChild(tbl);
+        // sets the border attribute of tbl to '2'
+        tbl.setAttribute("border", "2");
+      }
+
+      const cardinality = {
+        Acciaiuoli: 0.06666666666666667,
+        Albizzi: 0.2,
+        Barbardori: 0.13333333333333333,
+        Bischeri: 0.2,
+        Castellani: 0.2,
+        Ginori: 0.06666666666666667,
+        Guadagni: 0.26666666666666666,
+        Lamberteschi: 0.06666666666666667,
+        Medici: 0.4,
+        Pazzi: 0.06666666666666667,
+        Peruzzi: 0.2,
+        Pucci: 0.0,
+        Ridolfi: 0.2,
+        Salviati: 0.13333333333333333,
+        Strozzi: 0.26666666666666666,
+        Tornabuoni: 0.2,
+      };
+       let card_arr = sortObj(cardinality);
+       createHeader ("degree Centrality")
+      generateTable(card_arr);
+
+      const harmonic = {Albizzi: 7.833333333333332, 
+      Pucci: 0, 
+      Ginori: 5.333333333333333, 
+      Bischeri: 7.2, 
+      Lamberteschi: 5.366666666666667, 
+      Strozzi: 7.833333333333333, 
+      Pazzi: 4.766666666666667, 
+      Medici: 9.5, 
+      Barbardori: 7.083333333333333, 
+      Ridolfi: 8.0, 
+      Salviati: 6.583333333333333, 
+      Tornabuoni: 7.833333333333333, 
+      Guadagni: 8.083333333333332, 
+      Acciaiuoli: 5.916666666666667, 
+      Peruzzi: 6.783333333333332, 
+      Castellani: 6.916666666666666}
+        let harm_arr = sortObj(harmonic);
+          createHeader ("Harmonic degree")
+      generateTable(harm_arr);
+        const eignenvector = {'Acciaiuoli': 0.1321573195285342, 
+        Albizzi: 0.2439605296754477, 
+        Barbardori: 0.2117057470647985, 
+        Bischeri: 0.28279439587133565, 
+        Castellani: 0.2590200378423515, 
+        Ginori: 0.0749245316027793, 
+        Guadagni: 0.2891171573226501, 
+        Lamberteschi: 0.0887925311349955, 
+        Medici: 0.4303154258349923, 
+        Pazzi: 0.044814939703863084, 
+        Peruzzi: 0.27572243741048336, 
+        Pucci: 1.5210930780184977e-24, 
+        Ridolfi: 0.3415544259074365, 
+        Salviati: 0.14592084164171834, 
+        Strozzi: 0.3559730326460451, 
+        Tornabuoni: 0.325846704169574}
+         let eigen_arr = sortObj(eignenvector);
+          createHeader ("Eigen degree")
+      generateTable(eigen_arr);
+    </script>
+  </body>
+</html>
