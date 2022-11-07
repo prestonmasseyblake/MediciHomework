@@ -137,6 +137,8 @@ G.add_edge("Tornabuoni", "Ridolfi")
 # nx.draw(G, with_labels = True)
 # plt.show()
 
+
+# //////////////////////////////////////////////////////////////////
 # get a list of the degree sequences of the graphs 
 deg_seq = [G.degree(v) for v in G.nodes()]
 A = []
@@ -171,6 +173,29 @@ print("////////////////")
 
 plt.errorbar(range(16),new_valies,yerr=stds)
 plt.show()
+
+
+# //////////////////////////////////////////////////////////////////
+def readMedici(f):
+  G = nx.Graph()
+  with open(f, 'r') as f:
+    for line in f:
+      l = line.strip().split(',')
+      num = int(l[0].split(' ')[0])
+      name = l[0].split(' ')[1]
+      edges = l[1].strip().split(' ')
+      edges = [(num, int(v)) for v in edges if v!='']
+      G.add_edges_from(edges)
+      if num not in G.nodes: G.add_node(num)
+      G.nodes[num]['name'] = name
+  return G
+
+H = readMedici('medici.txt')
+nx.draw(H, with_labels = True)
+plt.show()
+for i in G.nodes: 
+    print("micheal phelps",i) 
+
 
 
 
