@@ -36,28 +36,38 @@ inc = 0
 # I = immunized 
 # S = infected 
 # A = available for infection 
-
+dict = {}
 # Strips the newline character
 for line in Lines:
-    if inc == 10000:
+    if inc == 1000:
         break
     l = line.split()
-    print(l)
+    # print(l)
     count += 1
     # print("Line{}: {}".format(count, line.strip()))
     inc += 1
-    G.add_edge(int(l[0]), int(l[1]), weight=int(l[2]), label="A")
+    lab ="A"
+    
+    G.add_edge(int(l[0]), int(l[1]), weight=int(l[2]))
+for i in nx.nodes(G):
+    nx.set_node_attributes(G, "A", "status")
+# print(G)
+print()
 
-print(G)
+for i in range(len(G.nodes)): 
+    print(i,G.nodes[i]["status"])
+
+
 infected_nodes = []
-
+fractions = []
 
 # immunization methods random  10% , 30% , 50% , 70% , 100%
-for i in nx.get_node_attributes(G, "label"):
-    
+# labels = nx.get_node_attributes(G, 'label').values()
+# print(labels)
+
 # pre set up immunize 10%
 
-for i in range(10):
+# for i in range(10):
 # 
 # for n in G.neighbors(changed_dictionary[i]):
 
